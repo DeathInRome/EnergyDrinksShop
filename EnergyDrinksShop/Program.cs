@@ -1,13 +1,19 @@
-public class Program
+namespace EnergyDrinksShop
 {
-    internal static void Main(string[] args)
+    public class Program
     {
-        var builder = WebApplication.CreateBuilder(args);
-        var app = builder.Build();
+        internal static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddControllersWithViews();
 
-        app.MapGet("/", () => "Hello World!");
+            var app = builder.Build();
 
-        app.Run();
+            app.MapControllerRoute(name: "default",
+                pattern: "{controller=Home}/{action=Index}");
+
+            app.Run();
+        }
+
     }
-
 }
